@@ -1,6 +1,7 @@
 package it.unipr.informatica.regex.view;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -19,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class AbstractMachinePanel extends JPanel {
 	private JButton showNFAbutton;
+	private JPanel buttonPanel;
 	private JTextArea textNFA;
 	private JLabel labelNFA;
 	private JScrollPane scrollPane;
@@ -28,18 +30,21 @@ public class AbstractMachinePanel extends JPanel {
 		this.app = a;
 		File file = new File("nfa.log");
 		textNFA = new JTextArea();
+		buttonPanel = new JPanel();
 		scrollPane = new JScrollPane(textNFA);
 		showNFAbutton = new JButton("Build NFA");
 		labelNFA = new JLabel("NFA rappresentation");
 		
+		buttonPanel.setLayout(new FlowLayout());
+		buttonPanel.add(showNFAbutton);
 		setLayout(new BorderLayout());
-		scrollPane.setBorder(new EmptyBorder(8,8,8,8));
+		scrollPane.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
-		//textNFA.setEditable(false);
+		textNFA.setEditable(false);
 		
 		add(scrollPane, BorderLayout.CENTER);
 		add(labelNFA, BorderLayout.NORTH);
-		add(showNFAbutton, BorderLayout.SOUTH);
+		add(buttonPanel, BorderLayout.SOUTH);
 		
 		showNFAbutton.addActionListener(new ActionListener() {
 			@Override

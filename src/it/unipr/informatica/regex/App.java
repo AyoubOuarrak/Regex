@@ -1,11 +1,19 @@
 package it.unipr.informatica.regex;
 
 import it.unipr.informatica.regex.view.*;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 import javax.swing.BoxLayout;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -33,7 +41,6 @@ public class App implements Runnable {
 	private AbstractMachinePanel abstractMachinePanel;
 	private MatchPanel matchPanel;
 	private ButtonPanel buttonPanel;
-	public boolean regexParsed = false;
 	
 	public App() {
 		buttonPanel = new ButtonPanel(this);
@@ -205,7 +212,53 @@ public class App implements Runnable {
 			}
 		});
 		
-		
+		frame.addWindowListener(new WindowListener() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				
+			}
+			
+			@Override
+			public void windowIconified(WindowEvent e) {
+				
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				// clear the nfa file
+				try {
+					// clear the file
+					System.setOut(new PrintStream(new OutputStream() { public void write(int b) throws IOException {} }));
+					
+					// set nfa.log for the output of the console
+					System.setOut(new PrintStream(new FileOutputStream("nfa.log")));
+				} catch(Exception e1) {
+					
+				}
+				System.out.println(" ");
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+					
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {
+				
+			}
+		});
 		
 	}
 	
