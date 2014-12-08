@@ -15,10 +15,10 @@ import it.unipr.informatica.regex.model.RegexParserInterface;
 @SuppressWarnings("rawtypes")
 public class RegexParser implements RegexParserInterface {
 
-	Stack operators;
-	Stack expressions;
-	int nextStateId;
-	TreeSet allCharacters;
+	protected Stack operators;
+	protected Stack expressions;
+	protected int nextStateId;
+	protected TreeSet allCharacters;
 
 	// default constructor
 	public RegexParser() {

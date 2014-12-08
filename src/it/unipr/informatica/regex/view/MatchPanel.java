@@ -1,10 +1,10 @@
 package it.unipr.informatica.regex.view;
 
-import it.unipr.informatica.regex.App;
-import it.unipr.informatica.regex.model.implementation.Converter;
-import it.unipr.informatica.regex.model.implementation.RegexConverter;
+import it.unipr.informatica.regex.Converter;
+import it.unipr.informatica.regex.RegexConverter;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
@@ -13,11 +13,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
@@ -52,7 +55,10 @@ public class MatchPanel extends JPanel {
 		
 		searchTextPanel.add(searchTextLabel, BorderLayout.NORTH);
 		searchTextPanel.add(scrollPane, BorderLayout.CENTER);
-		searchTextPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		
+		Border border = BorderFactory.createLineBorder(Color.gray);
+		scrollPane.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+		//searchTextPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		add(regexPanel, BorderLayout.NORTH);
 		add(searchTextPanel, BorderLayout.CENTER);

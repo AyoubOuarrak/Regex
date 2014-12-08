@@ -1,6 +1,4 @@
-package it.unipr.informatica.regex;
-
-import it.unipr.informatica.regex.view.*;
+package it.unipr.informatica.regex.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -13,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
-
 import javax.swing.BoxLayout;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;

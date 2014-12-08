@@ -1,4 +1,6 @@
 package it.unipr.informatica.regex;
+import it.unipr.informatica.regex.view.App;
+
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 

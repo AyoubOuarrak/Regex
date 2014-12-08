@@ -1,6 +1,7 @@
 package it.unipr.informatica.regex.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,19 +9,20 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-import it.unipr.informatica.regex.App;
-
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
 public class AbstractMachinePanel extends JPanel {
 	private JButton showNFAbutton;
 	private JPanel buttonPanel;
+	private JPanel searchTextPanel;
 	private JTextArea textNFA;
 	private JLabel labelNFA;
 	private JScrollPane scrollPane;
@@ -31,18 +33,27 @@ public class AbstractMachinePanel extends JPanel {
 		File file = new File("nfa.log");
 		textNFA = new JTextArea();
 		buttonPanel = new JPanel();
+		searchTextPanel = new JPanel();
 		scrollPane = new JScrollPane(textNFA);
 		showNFAbutton = new JButton("Build NFA");
 		labelNFA = new JLabel("NFA rappresentation");
+		labelNFA.setBorder(new EmptyBorder(10, 10, 10, 0));
 		
 		buttonPanel.setLayout(new FlowLayout());
+		searchTextPanel.setLayout(new BorderLayout());
+		
 		buttonPanel.add(showNFAbutton);
+		searchTextPanel.add(scrollPane, BorderLayout.CENTER);
+		Border border = BorderFactory.createLineBorder(Color.gray);
+		scrollPane.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+
+		searchTextPanel.setBorder(new EmptyBorder(0, 10, 0, 10));
+		
 		setLayout(new BorderLayout());
-		scrollPane.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		textNFA.setEditable(false);
 		
-		add(scrollPane, BorderLayout.CENTER);
+		add(searchTextPanel, BorderLayout.CENTER);
 		add(labelNFA, BorderLayout.NORTH);
 		add(buttonPanel, BorderLayout.SOUTH);
 		

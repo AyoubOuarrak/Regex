@@ -1,4 +1,8 @@
-package it.unipr.informatica.regex.model.implementation;
+package it.unipr.informatica.regex;
+
+import it.unipr.informatica.regex.model.implementation.RegexParser;
+import it.unipr.informatica.regex.model.implementation.State;
+import it.unipr.informatica.regex.model.implementation.Transition;
 
 import java.util.ArrayList;
 
@@ -131,8 +135,8 @@ public class RegexConverter extends RegexParser {
 
 		// Now construct the Transition between s1 and s2
 		Transition t = new Transition(strInChar);
-		t.transition.add(s2);
-		s1.transition.add(t);
+		t.getTransitions().add(s2);
+		s1.getTransitions().add(t);
 
 		// add states to the array
 		arrayExpression.add(s1);
