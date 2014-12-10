@@ -60,7 +60,6 @@ public class Converter {
 				return false;
 		}
 
-
 		for(int i = 0; i < getNFAstateCount(); ++i) {
 			State state = (State)pNFA.get(i);
 				
@@ -125,7 +124,7 @@ public class Converter {
 				}
 				
 			}
-		}
+		}    
 		
 		ArrayList states = new ArrayList();
 		states.addAll(resultStates);
@@ -153,6 +152,17 @@ public class Converter {
 
 	// convert NFA to DFA using the subset construction method
 	public boolean convert() {
+		
+		try {
+			// clear the file
+			System.setOut(new PrintStream(new OutputStream() { public void write(int b) throws IOException {} }));
+			
+			// set nfa.log for the output of the console
+			System.setOut(new PrintStream(new FileOutputStream("dfa.log")));
+		} catch(Exception e) {
+			
+		}
+		
 		// get the first state/states of the NFA
 		State startState = (State)NFA.get(startStateNFA);
 		if(startState == null)
@@ -163,9 +173,11 @@ public class Converter {
 
 		// The start state of DFA is constructed from the e-closure the first state of the NFA
 		ArrayList states = eClosure(startState);
+		
 		startState = new State(states);
 
 		startStateDFA = startState.getName();
+		System.out.println("start state: " + startStateDFA);
 		DFA.put(startStateDFA, startState);
 		unprocessed.add(startState);
 		State DFAState = (State)unprocessed.get(0);

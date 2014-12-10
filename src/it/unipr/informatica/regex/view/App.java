@@ -35,7 +35,8 @@ public class App implements Runnable {
 	private JTabbedPane tabs;
 	private JMenuBar menuBar;
 	private ReplacePanel replacePanel;
-	private AbstractMachinePanel abstractMachinePanel;
+	private NFAPanel nfaPanel;
+	private DFAPanel dfaPanel;
 	private MatchPanel matchPanel;
 	private ButtonPanel buttonPanel;
 	
@@ -43,7 +44,8 @@ public class App implements Runnable {
 		buttonPanel = new ButtonPanel(this);
 		matchPanel = new MatchPanel(this);
 		replacePanel = new ReplacePanel();
-		abstractMachinePanel = new AbstractMachinePanel(this);
+		nfaPanel = new NFAPanel(this);
+		dfaPanel = new DFAPanel(this);
 	}
 	
 	@Override
@@ -82,9 +84,10 @@ public class App implements Runnable {
 		containerPanel.setLayout(new BorderLayout());
 		
 		// set tabs
-		tabs.addTab("match", matchPanel);
-		tabs.addTab("replace", replacePanel);
-		tabs.addTab("Abstract Machine", abstractMachinePanel);
+		tabs.addTab("Match", matchPanel);
+		tabs.addTab("Replace", replacePanel);
+		tabs.addTab("NFA", nfaPanel);
+		tabs.addTab("DFA", dfaPanel);
 		tabs.setTabPlacement(JTabbedPane.TOP);
 		
 		statusBar.setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -257,6 +260,19 @@ public class App implements Runnable {
 			}
 		});
 		
+		showNFAStateMenu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showNFA();
+			}
+		});
+		
+		showDFAStateMenu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showDFA();
+			}
+		});
 	}
 	
 	public void search() {
@@ -273,6 +289,11 @@ public class App implements Runnable {
 	
 	public void showNFA() {
 		File file = new File("nfa.log");
-		abstractMachinePanel.showNFA(file);
+		nfaPanel.showNFA(file);
+	}
+	
+	public void showDFA() {
+		File file = new File("dfa.log");
+		dfaPanel.showDFA(file);
 	}
 }

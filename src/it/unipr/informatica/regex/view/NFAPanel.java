@@ -19,7 +19,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
-public class AbstractMachinePanel extends JPanel {
+public class NFAPanel extends JPanel {
 	private JButton showNFAbutton;
 	private JPanel buttonPanel;
 	private JPanel searchTextPanel;
@@ -28,7 +28,7 @@ public class AbstractMachinePanel extends JPanel {
 	private JScrollPane scrollPane;
 	App app;
 	
-	public AbstractMachinePanel(App a) {
+	public NFAPanel(App a) {
 		this.app = a;
 		File file = new File("nfa.log");
 		textNFA = new JTextArea();
